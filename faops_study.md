@@ -83,15 +83,17 @@ faops count <in.fa> [more_files.fa]
 faops count in.fa
 ```
 其中，in.fa文件内容为：  
-
-&gt;test0
-tCGTTTAACCCAAatcAAGGCaatANNNCAggtGggCCGccCatgTcAcAAActcgatGAGtgGgaAaTGgAgTgaAGcaGCAtCtGctgaGCCCCATTctctAgCggaaaATGgtatCGaAnnCcGagataAG  
-&gt;test1
-taGGCGcgCggtggGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatc  
-GCaTaTC  
-&gt;test4  
-&gt;test7
+```bash
+>test0
+tCGTTTAACCCAAatcAAGGCaatANNNCAggtGggCCGccCatgTcAcAAActcgatGAGtgGgaAaTGgAgTgaAGcaGCAtCtGctgaGCCCCATTctctAgCggaaaATGgtatCGaAnnCcGagataAG
+>test1
+taGGCGcgCggtggGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatc
+GCaTaTC
+>test4
+>test7
 gTTTTcttaGNNgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
+```
+
 
 输出
 ```bash
