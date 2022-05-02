@@ -35,11 +35,11 @@ make
 ### 3.1 获取使用帮助：faops help
 在操作系统上直接敲faops help回车后，即返回faops的所有功能选项。
 
-输入
+##### 输入
 ```
 faops help
 ```
-输出
+##### 输出 
 ```bash
 Usage:     faops <command> [options] <arguments>
 Version:   0.8.21
@@ -77,8 +77,7 @@ Options:
 faops count <in.fa> [more_files.fa] 
 ```
 #### 运行测试
-
-输入
+##### 输入
 ```bash
 faops count in.fa
 ```
@@ -93,9 +92,7 @@ GCaTaTC
 >test7
 gTTTTcttaGNNgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
 ```
-
-
-输出
+##### 输出
 ```bash
 #seq    len     A       C       G       T       N
 test0   134     40      30      34      25      5
@@ -112,11 +109,11 @@ total   312     74      76      83      72      7
 faops size <in.fa> [more_files.fa]
 ```
 #### 运行测试（in.fa文件内容与3.2中一致）  
-输入
+##### 输入
 ```bash
 faops size in.fa
 ```
-输出
+##### 输出
 ```bash
 test0   136
 test1   103
@@ -134,11 +131,11 @@ faops masked [options] <in.fa> [more_files.fa]
 -g         only record regions of N/n
 ```
 #### 运行测试（in.fa文件内容与3.2中一致）  
-输入
+##### 输入
 ```bash
 faops masked -g in.fa
 ```
-输出
+##### 输出
 ```bash
 test0:26-28
 test0:103-104
@@ -156,10 +153,11 @@ faops frag [options] <in.fa> <start> <end> <out.fa>
 -l INT     sequence line length [%d]
 ```
 #### 运行测试（in.fa文件内容与3.2中一致）  
-输入
+##### 输入
 ```bash
 faops frag -l 60 in.fa 18 88 out.fa
 ```
+##### 输出
 返回提示  
 ```bash
 More than one sequence in in.fa, just using first
@@ -184,7 +182,7 @@ faops rc [options] <in.fa> <out.fa>
 -l INT     sequence line length [%d]
 ```
 #### 运行测试（in.fa文件内容与3.2中一致）  
-输入
+##### 输入
 ```bash
 faops rc -l 60 -n -f list.file in.fa out.fa
 ```
@@ -193,6 +191,7 @@ list.file文件内容
 test0
 test7
 ```
+##### 输出
 out.fa文件内容
 ```bash
 >test0
@@ -220,12 +219,12 @@ faops some [options] <in.fa> <list.file> <out.fa>
 -l INT     sequence line length [%d]
 ```
 #### 运行测试（in.fa文件内容与3.2中一致）  
-输入
+##### 输入
 ```bash
 faops some -i -l 60 in.fa list.file out.fa
 ```
 list.file文件内容与3.6一致
-
+##### 输出
 out.fa文件内容
 ```bash
 >test1
@@ -235,3 +234,96 @@ AAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatcGCaTaTC
 ```
 
 ## 3.8 按照指定规则重排序列：faops order
+命令faops order可以将序列文件数据全部读入内存，然后按照提供的顺序输出到新文件中。本功能类似some，但内存调度策略存在差别：order会一次性占用更高的内存。
+#### 用法
+```bash
+faops order [options] <in.fa> <list.file> <out.fa>
+
+"options"
+-l INT     sequence line length [%d]
+```
+#### 运行测试（in.fa文件内容与3.2中一致）  
+##### 输入
+
+注：此命令行实现了序列从长到短的排列
+```bash
+  faops order in.fa \
+      <(faops size in.fa | sort -n -r -k2,2 | cut -f 1) \
+      out.fa
+```
+##### 输出
+out.fa文件内容
+```bash
+>test0
+tCGTTTAACCCAAatcAAGGCaatANNNCAggtGggCCGccCatgTcAcAAActcgatGAGtgGgaAaTGgAgTgaAGca
+GCAtCtGctgaGCCCCATTctctAgCggaaaATGgtatCGaAnnCcGagataAG
+>test1
+taGGCGcgCggtggGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCgGcc
+CtatAtgaTtCcGatcGCaTaTC
+>test7
+gTTTTcttaGNNgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
+>test4
+
+```
+
+## 3.9 替换序列名: faops replace
+命令faops replace能够实现对特定序列名的替换，也可以仅对指定序列的提取、改名并输出。其中，replace.tsv文件里名称的变换可以用制表符tab分隔开。
+#### 用法
+```bash
+faops replace [options] <in.fa> <replace.tsv> <out.fa>
+
+"options"
+  -s         only output sequences in the list, like faops some
+  -l INT     sequence line length [%d]
+```
+#### 运行测试（in.fa文件内容与3.2中一致）  
+##### 输入
+```bash
+faops replace -s -l 60 in.fa replace.tsv out.fa
+```
+repalce.tsv文件内容
+```bash
+test0	read0
+test4	read4
+```
+##### 输出
+out.fa文件内容
+```bash
+>read0
+tCGTTTAACCCAAatcAAGGCaatANNNCAggtGggCCGccCatgTcAcAAActcgatGA
+GtgGgaAaTGgAgTgaAGcaGCAtCtGctgaGCCCCATTctctAgCggaaaATGgtatCG
+aAnnCcGagataAG
+>read4
+
+```
+
+## 过滤特定长度区间的序列： faops filter
+命令filter可以进行长度条件筛选。设置指定的最长和最短通过量，即可完成指定长度区间序列的筛选，并还可以使用参数实现其他一些功能：比如去除序列名重复的序列，简化序列名，过滤掉N含量较高的序列，将IUPAC模糊碱基替换为N，统一转大写，同一序列置于一行等等。
+#### 用法
+```bash
+faops filter [options] <in.fa> <out.fa>
+
+"options"
+-a INT     pass sequences at least this big ('a'-smallest)
+-z INT     pass sequences this size or smaller 
+-n INT     pass sequences with fewer than this number of Ns
+-u         Unique, removes duplicated ids, keeping the first
+-U         Upper case, converts all sequences to upper cases
+-b         pretend to be a blocked fasta file
+-N         convert IUPAC ambiguous codes to 'N'
+-d         remove dashes '-'
+-s         simplify sequence names
+-l INT     sequence line length [%d]
+```
+#### 运行测试（in.fa文件内容与3.2中一致）  
+##### 输入
+```bash
+faops filter -l 60 -a 5 -z 88 -n 4 in.fa out.fa
+```
+##### 输出
+out.fa文件内容
+```bash
+>test7
+gTTTTcttaGNNgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTT
+aCCtcCTCGtgACCC
+```
