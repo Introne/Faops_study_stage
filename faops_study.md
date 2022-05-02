@@ -17,12 +17,11 @@ faops是一个轻量级工具，可以处理FASTA或FASTQ格式（忽略质量�
 ### 2.3 工作环境
 faops的编写语言为C语言，可在Windows环境和Linux环境运行。  
 
-
- ## 2.4 How to obtain a faops
- 本软件可以使用Linuxbrew直接安装，命令如下：
- ```bash
- brew install wang-q/tap/faops
- ```
+## 三. How to obtain a faops
+本软件可以使用Linuxbrew直接安装，命令如下：
+```bash
+brew install wang-q/tap/faops
+```
 也可下载软件包后，在Linux，macOS（gcc or clang）和Windows（MinGW）系统环境自行编译：
 ```bash
 git clone https://github.com/wang-q/faops
@@ -31,8 +30,8 @@ make
 ```
 注：本教程里的faops命令例子都是在ubuntu中演示的。
 
-## 三. How to use faops
-### 3.1 获取使用帮助：faops help
+## 四. How to use faops
+### 4.1 获取使用帮助：faops help
 在操作系统上直接敲faops help回车后，即返回faops的所有功能选项。
 
 ##### 输入
@@ -68,7 +67,7 @@ Options:
     Type "faops command-name" for detailed options of each command.
     Options *MUST* be placed just after command.
 ```
-## 3.2 统计序列总长和碱基数量：faops count
+### 4.2 统计序列总长和碱基数量：faops count
 命令count用于统计一个或多个序列文件中各序列的总长和各序列的碱基数量分情况。 
 
 #### 用法
@@ -101,7 +100,7 @@ test4   0       0       0       0       0       0
 test7   75      10      21      19      23      2
 total   312     74      76      83      72      7
 ```
-## 3.3 统计序列长度：faops size
+### 4.3 统计序列长度：faops size
 命令faops size可以统计一个或多个序列文件中序列长度信息。
 
 #### 用法
@@ -120,7 +119,7 @@ test1   103
 test4   0
 test7   75
 ```
-## 3.4 定位冗余碱基：faops masked 
+### 4.4 定位冗余碱基：faops masked 
 命令faops masked可以快速找到一个或多个序列文件中冗余碱基位置，比如N碱基和gap等。
 
 #### 用法
@@ -138,12 +137,12 @@ faops masked -g in.fa
 ##### 输出
 ```bash
 test0:26-28
-test0:103-104
-test0:125-126
-test7:11-12
+test0:103-l04
+test0:125-l26
+test7:11-l2
 ```
 
-## 3.5 提取指定位置的序列片段：faops frag
+### 4.5 提取指定位置的序列片段：faops frag
 命令frag可以从序列文件中准确提取指定位置的片段。值得注意的是：如果一个序列文件中包含多个序列，则默认对其中第一个序列进行提取操作。此外，可以通过手动添加参数-l来指定提出片段的分行宽度，序列分行的宽度默认为80。
 #### 用法
 ```bash
@@ -168,7 +167,7 @@ out.fa文件内容
 AGGCaatANNNCAggtGggCCGccCatgTcAcAAActcgatGAGtgGgaAaTGgAgTgaAGcaGCAtCtGc
 ```
 
-## 3.6 获得反向“和”“或”互补序列：faops rc
+### 4.6 获得反向“和”“或”互补序列：faops rc
 命令rc可以获得一个或多个序列的反向或互补序列。本功能可以根据使用者实际需求，使用不同参数生成反向、互补、反向且互补这三种形式的序列。其中，参数-f 列表里的序列名称以回车换行进行分隔。
 #### 用法
 ```bash
@@ -208,7 +207,7 @@ GGGTcaCGAGgaGGtAACaaAcAcaccTggagatTAcCcccGGctAGaGaTgcTTCGgga
 cGcNNCtaagAAAAc
 ```
 
-## 3.7 提取特定list中的序列：faops some 
+### 4.7 提取特定list中的序列：faops some 
 命令faops some可以根据列表文件里的序列名称提取特定序列，其中，列表里的序列名称以回车换行进行分隔。本功能也可通过添加参数-i来反向提取名称不在列表中的序列。
 #### 用法
 ```bash
@@ -233,7 +232,7 @@ AAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatcGCaTaTC
 >test4
 ```
 
-## 3.8 按照指定规则重排序列：faops order
+### 4.8 按照指定规则重排序列：faops order
 命令faops order可以将序列文件数据全部读入内存，然后按照提供的顺序输出到新文件中。本功能类似some，但内存调度策略存在差别：order会一次性占用更高的内存。
 #### 用法
 ```bash
@@ -266,7 +265,7 @@ gTTTTcttaGNNgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
 
 ```
 
-## 3.9 替换序列名: faops replace
+### 4.9 替换序列名: faops replace
 命令faops replace能够实现对特定序列名的替换，也可以仅对指定序列的提取、改名并输出。其中，replace.tsv文件里名称的变换可以用制表符tab分隔开。
 #### 用法
 ```bash
@@ -297,7 +296,7 @@ aAnnCcGagataAG
 
 ```
 
-## 3.10 过滤特定长度区间的序列： faops filter
+### 4.10 过滤特定长度区间的序列： faops filter
 命令filter可以进行长度条件筛选。设置指定的最长和最短通过量，即可完成指定长度区间序列的筛选，并还可以使用参数实现其他一些功能：比如去除序列名重复的序列，简化序列名，过滤掉N含量较高的序列，将IUPAC模糊碱基替换为N，统一转大写，同一序列置于一行等等。
 #### 用法
 ```bash
@@ -327,3 +326,249 @@ out.fa文件内容
 gTTTTcttaGNNgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTT
 aCCtcCTCGtgACCC
 ```
+
+
+### 4.11 按名称对序列文件进行切割：faops split-name
+命令faops split-name可以按序列名称对序列文件进行切割。此功能会输出一个包含所有序列的文件夹
+#### 用法
+```bash
+faops split-name [options] <in.fa> <outdir>
+
+"options"
+-l INT     sequence line length [%d]
+```
+#### 运行测试（in.fa文件内容与3.2中一致）  
+##### 输入
+```bash
+faops split-name -l 60 in.fa out.dir
+```
+##### 输出
+输出的out.dir文件夹里有四个序列文件，名称分别为test0.fa、test1.fa、test4.fa、test7.fa。
+
+test0.fa文件内容
+```bash
+>test0
+tCGTTTAACCCAAatcAAGGCaatANNNCAggtGggCCGccCatgTcAcAAActcgatGA
+GtgGgaAaTGgAgTgaAGcaGCAtCtGctgaGCCCCATTctctAgCggaaaATGgtatCG
+aAnnCcGagataAG
+```
+test1.fa文件内容
+```bash
+>test1
+taGGCGcgCggtggGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggG
+AAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatcGCaTaTC
+aAnnCcGagataAG
+```
+test4.fa文件内容（注：test4无序列,输出即为空文件）
+```bash
+>test4
+
+```
+test0.fa文件内容
+```bash
+>test7
+gTTTTcttaGNNgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTT
+aCCtcCTCGtgACCC
+```
+
+## 4.12 按byte大小对序列文件进行切割：faops split-about
+命令faops split-about可以按序列byte大小对序列文件进行切割。
+#### 用法
+```bash
+faops split-about [options] <in.fa> <approx_size> <outdir>
+
+"options"
+-e         sequences in one file should be EVEN
+-m INT     max parts
+-l INT     sequence line length [%d]
+```
+#### 运行测试（in.fa文件内容与3.2中一致）  
+##### 输入
+```bash
+faops split-about -l 60 -e -m 3 in.fa 25 out.dir
+```
+##### 输出
+输出的out.dir文件夹里有三个序列文件，名称分别为000.fa、001.fa、002.fa。
+
+000.fa文件内容
+```bash
+>test0
+tCGTTTAACCCAAatcAAGGCaatANNNCAggtGggCCGccCatgTcAcAAActcgatGA
+GtgGgaAaTGgAgTgaAGcaGCAtCtGctgaGCCCCATTctctAgCggaaaATGgtatCG
+aAnnCcGagataAG
+>test1
+taGGCGcgCggtggGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggG
+AAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatcGCaTaTC
+```
+001.fa文件内容
+```bash
+>test4
+
+```
+
+002.fa文件内容
+```bash
+>test7
+gTTTTcttaGNNgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTT
+aCCtcCTCGtgACCC
+```
+
+### 4.13 计算N50及其他一些统计值：faops n50
+成功注释基因组的第一步就是看组装有没有达到要求，除了一些统计指标来表述组装的完整性和连续性之外，最重要的就是N50。尽管没有绝对的标准，但是对于基因预测而言，n50达到基因的平均长度是一个合理的目标，原因十分简单：基因中约有50%有望包括在单个scaffold或者contig中，N50类似于长度的平均值或中值，但对于较长的contig具有更重要的意义。  
+命令n50可以计算N50值。并且可以通过参数设置，计算其他统计数据。比如计算碱基总数，碱基平均数，E值大小，总序列数等等
+
+#### 用法
+```bash
+faops n50 [options] <in.fa> [more_files.fa]
+
+"options"
+-H         do not display header
+-N INT     compute Nx statistic [%d]
+-S         compute sum of size of all entries
+-A         compute average length of all entries
+-E         compute the E-size (from GAGE)
+-C         count entries
+-g INT     size of genome, instead of total size in files
+```
+#### 运行测试（in.fa文件内容与3.2中一致）  
+##### 输入
+```bash
+faops n50 -S -A -E -C in.fa
+```
+##### 输出
+```bash
+N50     103
+S       312
+A       78.00
+E       109.58
+C       4
+```
+
+### 4.14 序列信息标准化：faops dazz
+命令faops dazz可以对序列信息命名进行新的标准化，为下游组装分析做准备。重复名称的序列仅保留第一个。
+#### 用法
+```bash
+faops dazz [options] <in.fa> <out.fa>
+
+"options"
+-p STR     prefix of names [read]
+-s INT     start index [1]
+-a         don't drop duplicated ids
+-l INT     sequence line length [%d]
+```
+#### 运行测试（in.fa文件内容与3.2中一致）  
+##### 输入
+```bash
+faops dazz -l 60 -p read -s 0 in.fa out.fa
+```
+##### 输出
+out.fa文件内容
+```bash
+>read/0/0_134
+tCGTTTAACCCAAatcAAGGCaatANNNCAggtGggCCGccCatgTcAcAAActcgatGA
+GtgGgaAaTGgAgTgaAGcaGCAtCtGctgaGCCCCATTctctAgCggaaaATGgtatCG
+aAnnCcGagataAG
+>read/1/0_103
+taGGCGcgCggtggGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggG
+AAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatcGCaTaTC
+>read/2/0_0
+
+>read/3/0_75
+gTTTTcttaGNNgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTT
+aCCtcCTCGtgACCC
+```
+
+### 4.15 合并双端测序文件:faops interleave
+命令interleave可以将双端测序的两个文件交错合并。可以只输入一个文件，此时另一端会以N为序列内容。
+#### 用法
+```bash
+faops interleave [options] <R1.fa> [R2.fa]
+
+"options"
+-q         write FQ. The inputs must be FQs
+-p STR     prefix of names [read]
+-s INT     start index [0]
+```
+#### 运行测试  
+##### 输入
+```bash
+faops interleave -p read -s 0 in1.fa in2.fa
+```
+in1.fa文件内容
+```bash
+>read0
+tCGTTTAACCCAAatcAAGGCaatACAggtGggCCGccCatgTcAcAAActcgatGAGtgGgaAaTGgAgTgaAGcaGCAtCtGctgaGCCCCATTctc
+>read1
+taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatc
+GCaTaTC
+>read2
+AtagcAagCtcAgttcaACttCAcCGGT
+```
+in2.fa文件内容
+```bash
+>read1
+gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAgg
+tgTgTttGTTaCCtcCTCGtgACCC
+>read2
+GcgATCgCtcACTtGcGCTtcCCtggCtGctcTGgtctgtGca
+gctAGtAAccAgtaTCtaGgtGAGACCaTGgcg
+>read3
+AatcccAgAttcttCcTaTAGgGTagTaAcgcggTgGAgCTGCagAGGTaAgccGtcg
+GaGGGgagGcAagtGCCggtTGcGAGtcCaTgCcTtCAGgccCtcG
+```
+##### 输出
+```bash
+>read0/1
+tCGTTTAACCCAAatcAAGGCaatACAggtGggCCGccCatgTcAcAAActcgatGAGtgGgaAaTGgAgTgaAGcaGCAtCtGctgaGCCCCATTctc
+>read0/2
+gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
+>read1/1
+taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatcGCaTaTC
+>read1/2
+GcgATCgCtcACTtGcGCTtcCCtggCtGctcTGgtctgtGcagctAGtAAccAgtaTCtaGgtGAGACCaTGgcg
+>read2/1
+AtagcAagCtcAgttcaACttCAcCGGT
+>read2/2
+AatcccAgAttcttCcTaTAGgGTagTaAcgcggTgGAgCTGCagAGGTaAgccGtcgGaGGGgagGcAagtGCCggtTGcGAGtcCaTgCcTtCAGgccCtcG
+```
+
+### 4.16 摘取序列中指定位置的片段: faops region
+命令faops region可以在序列文件中摘取一个或多个指定的序列片段。本功能可以使用参数标注摘取的正反方向。  
+region.txt中某个序列的多个位置用逗号分隔，多个序列之间用回车换行分隔。
+#### 用法
+```bash
+faops region [options] <in.fa> <region.txt> <out.fa>
+
+"options"
+-s         add strand '(+)' to headers
+-l INT     sequence line length [%d]
+```
+#### 运行测试（in.fa文件内容与3.2中一致）  
+##### 输入
+```bash
+faops region -l 60 -s in.fa region.txt out.fa
+```
+region.txt文件内容
+```bash
+test0:6-16,18-28
+test4:5-15
+test7:2-10,16-18
+```
+##### 输出
+out.fa文件内容
+```bash
+>test0(+):6-16
+TAACCCAAatc
+>test0(+):18-28
+AGGCaatANNN
+>test4(+):5-15
+CGcgCggtggG
+>test7(+):2-10
+TTTTcttaG
+>test7(+):16-18
+tcc
+```
+## 五. 小结
+本工具有南京大学生科院王强老师<wang-q@outlook.com>开发，更多内容请阅读：https://github.com/wang-q/faops
+
+这是一个开源的软件，任何人可以进行修改或开发新版本。
