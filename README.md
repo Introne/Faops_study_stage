@@ -1,2 +1,4 @@
 # Faops_study_stge
-This is my first repo
+在faops_study文件内存有aops工具的使用说明
+
+本工具由南京大学王强老师开发，部分instruction参考了吴一凡同学的文字说明
