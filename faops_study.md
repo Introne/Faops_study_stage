@@ -569,6 +569,6 @@ TTTTcttaG
 tcc
 ```
 ## 五. 小结
-本工具有南京大学生科院王强老师<wang-q@outlook.com>开发，更多内容请阅读：https://github.com/wang-q/faops
+本工具由南京大学生科院王强老师<wang-q@outlook.com>开发，更多内容请阅读：https://github.com/wang-q/faops
 
 这是一个开源的软件，任何人可以进行修改或开发新版本。
