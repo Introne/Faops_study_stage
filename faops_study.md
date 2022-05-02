@@ -171,7 +171,7 @@ AGGCaatANNNCAggtGggCCGccCatgTcAcAAActcgatGAGtgGgaAaTGgAgTgaAGcaGCAtCtGc
 ```
 
 ## 3.6 获得反向“和”“或”互补序列：faops rc
-命令rc可以获得一个或多个序列的反向或互补序列。本功能可以根据使用者实际需求，使用不同参数生成反向、互补、反向且互补这三种形式的序列。
+命令rc可以获得一个或多个序列的反向或互补序列。本功能可以根据使用者实际需求，使用不同参数生成反向、互补、反向且互补这三种形式的序列。其中，参数-f 列表里的序列名称以回车换行进行分隔。
 #### 用法
 ```bash
 faops rc [options] <in.fa> <out.fa>
@@ -209,4 +209,29 @@ GGGTcaCGAGgaGGtAACaaAcAcaccTggagatTAcCcccGGctAGaGaTgcTTCGgga
 cGcNNCtaagAAAAc
 ```
 
-## 3.7 提出特定list中的序列：faops some 
+## 3.7 提取特定list中的序列：faops some 
+命令faops some可以根据列表文件里的序列名称提取特定序列，其中，列表里的序列名称以回车换行进行分隔。本功能也可通过添加参数-i来反向提取名称不在列表中的序列。
+#### 用法
+```bash
+faops some [options] <in.fa> <list.file> <out.fa>
+
+"options"
+-i         Invert, output sequences not in the list
+-l INT     sequence line length [%d]
+```
+#### 运行测试（in.fa文件内容与3.2中一致）  
+输入
+```bash
+faops some -i -l 60 in.fa list.file out.fa
+```
+list.file文件内容与3.6一致
+
+out.fa文件内容
+```bash
+>test1
+taGGCGcgCggtggGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggG
+AAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatcGCaTaTC
+>test4
+```
+
+## 3.8 按照指定规则重排序列：faops order
