@@ -80,7 +80,7 @@ faops count <in.fa> [more_files.fa]
 ```bash
 faops count in.fa
 ```
-其中,in.fa 文件内容为:   
+其中, in.fa 文件内容为:   
 ```bash
 >test0
 tCGTTTAACCCAAatcAAGGCaatANNNCAggtGggCCGccCatgTcAcAAActcgatGAGtgGgaAaTGgAgTgaAGcaGCAtCtGctgaGCCCCATTctctAgCggaaaATGgtatCGaAnnCcGagataAG
