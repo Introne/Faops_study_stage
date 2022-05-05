@@ -375,6 +375,8 @@ aCCtcCTCGtgACCC
 
 ## 4.12 按byte 大小对序列文件进行切割: faops split-about
 命令faops split-about 可以按序列byte 大小对序列文件进行切割.
+
+该命令下，approx_size 指的是碱基片段的长度. 
 #### 用法
 ```bash
 faops split-about [options] <in.fa> <approx_size> <outdir>
