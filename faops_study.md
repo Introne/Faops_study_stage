@@ -68,7 +68,7 @@ Options:
     Options *MUST* be placed just after command.
 ```
 ### 4.2 统计序列总长和碱基数量: faops count
-命令count 用于统计一个或多个序列文件中各序列的总长和各序列的碱基数量分情况. 
+命令faops count 用于统计一个或多个序列文件中各序列的总长和各序列的碱基数量分情况. 
 
 #### 用法
 
@@ -567,6 +567,6 @@ TTTTcttaG
 tcc
 ```
 ## 五. 小结
-本工具由南京大学生科院王强老师<wang-q@outlook.com>开发,更多内容请参考: https://github.com/wang-q/faops
+本工具由南京大学生科院王强老师<wang-q@outlook.com> 开发,更多内容请参考: https://github.com/wang-q/faops
 
 这是一个开源的软件,任何人可以进行版本修改或再开发.
